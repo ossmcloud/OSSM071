@@ -84,7 +84,7 @@ define(['N/email', 'N/error', 'N/record', 'N/search', 'N/runtime', 'N/query', 'N
                 log.debug("transactionSearchObj result count", searchResultCount);
                 var searchResults = transactionSearchObj.run().getRange({
                     start: 0,
-                    end: 5
+                    end: 1000
                 });
                 for (var i = 0; i < searchResults.length; i++) {
                     var result = searchResults[i];
@@ -123,7 +123,7 @@ define(['N/email', 'N/error', 'N/record', 'N/search', 'N/runtime', 'N/query', 'N
                         });
                         var fileSearchResults = fileSearchObj.run().getRange({
                             start: 0,
-                            end: 1
+                            end: 1000
                         });
                         if (fileSearchResults.length > 0) {
                             var fileResult = fileSearchResults[0];
@@ -131,8 +131,7 @@ define(['N/email', 'N/error', 'N/record', 'N/search', 'N/runtime', 'N/query', 'N
                             var fileType = fileResult.getValue({ name: 'filetype' });
                             log.debug("Found attached file ID: " + fileId + " of type: " + fileType);
                             attachedExtraFile = file.load({
-                                id: fileId,
-                                type: file.Type.XLSX
+                                id: fileId
                             });
                         }
                     }
